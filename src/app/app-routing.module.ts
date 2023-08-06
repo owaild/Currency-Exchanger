@@ -10,6 +10,7 @@ const routes: Routes = [
         './app-modules/currency-exchanger/currency-exchanger.module'
       ).then((m) => m.CurrencyExchangerModule),
   },
+
 ];
 
 @NgModule({

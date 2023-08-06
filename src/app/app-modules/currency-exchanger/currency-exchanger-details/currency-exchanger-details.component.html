@@ -1,1 +1,23 @@
-<p>currency-exchanger-details works!</p>
+<table class="table mt-5 " *ngIf="historyExchangeRates.length > 0">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">From</th>
+      <th scope="col">amount</th>
+      <th scope="col">To</th>
+      <th scope="col">cal</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of historyExchangeRates;let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>({{item.from}}) {{item.formName}}</td>
+      <td> {{item.amount}}</td>
+      <td>({{item.to}}) {{item.ToName}}</td>
+      <td>{{item.cal}}</td>
+      <td>{{item.date | date:'medium'}}</td>
+    </tr>
+
+  </tbody>
+</table>

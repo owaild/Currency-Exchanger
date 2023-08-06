@@ -1,2 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+
+select {
+  -moz-appearance: auto !important; /* Firefox */
+  -webkit-appearance: auto !important; /* Safari and Chrome */
+  appearance: auto !important;
+}

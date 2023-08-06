@@ -14,9 +14,10 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'Exchanger-Details',
+        path: 'exchanger-details',
         component: CurrencyExchangerDetailsComponent,
       },
+      { path: '', redirectTo: 'Home', pathMatch: 'full' },
     ],
   },
 ];

@@ -1,30 +1,36 @@
-// import {
-//   HttpInterceptor,
-//   HttpRequest,
-//   HttpHandler,
-//   HttpEvent
-// } from '@angular/common/http';
-// import { Injectable } from '@angular/core';
-// import { Observable } from 'rxjs';
+import { HttpErrorResponse, HttpInterceptor, HTTP_INTERCEPTORS, HttpRequest, HttpHandler } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ObservableInput, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
-// @Injectable()
-// export class JwtInterceptor implements HttpInterceptor {
-//   constructor(private authService: AuthenticationService) {}
+@Injectable()
+export class TokenInterceptorService implements HttpInterceptor {
+  constructor() { }
 
-//   intercept(
-//     request: HttpRequest<any>,
-//     next: HttpHandler
-//   ): Observable<HttpEvent<any>> {
-//     // add authorization header with jwt token if available
-//     const userToken = this.authService.currentUserToken;
-//     if (userToken) {
-//       request = request.clone({
-//         setHeaders: {
-//           Authorization: `Bearer ${userToken}`
-//         }
-//       });
-//     }
+  intercept(request: HttpRequest<any>, next: HttpHandler) {
 
-//     return next.handle(request);
-//   }
-// }
+
+    let tokenizedRquest = request.clone({
+      setParams: {
+        access_key: environment.ApiKey,
+      }
+
+    });
+
+
+
+
+    return next.handle(tokenizedRquest)
+    // .pipe(catchError((err: any) => {
+
+    //   if (err instanceof HttpErrorResponse) {
+    //     if (err.status === 401) {
+    //       localStorage.clear()
+    //       location.href = location.origin;
+    //     }
+    //     return throwError(err);
+    //   }
+    // }));
+  }
+}

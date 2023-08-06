@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root"
@@ -9,15 +10,25 @@ export class CurrencyExchangerService {
 
   // set endpoint and your API key
   endpoint = "convert";
-  access_key = "YOUR_FIXER.IO_API";
-  baseURL = "http://data.fixer.io/api/";
 
-  currencySymbols() {
+  currencySymbols(data: any) {
+    let httpParams = new HttpParams();
+    Object.keys(data).forEach(function (key) {
+      if (key && data[key] != undefined && data[key] != '') {
+        httpParams = httpParams.append(key, data[key]);
+      }
+    });
     return this.http.get(
-      this.baseURL + "symbols?access_key=" + this.access_key
+      environment.baseURL + "symbols?" + httpParams
     );
   }
-  currencyRate() {
-    return this.http.get(this.baseURL + "latest?access_key=" + this.access_key);
+  currencyRate(data: any) {
+    let httpParams = new HttpParams();
+    Object.keys(data).forEach(function (key) {
+      if (key && data[key] != undefined && data[key] != '') {
+        httpParams = httpParams.append(key, data[key]);
+      }
+    });
+    return this.http.get(environment.baseURL + "latest?" + httpParams);
   }
 }

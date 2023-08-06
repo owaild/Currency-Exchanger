@@ -23,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ThemeModule,
     FormsModule,
     ReactiveFormsModule,
-    CurrencyExchangerRoutingModule
+    CurrencyExchangerRoutingModule,
+
   ]
 })
 export class CurrencyExchangerModule { }

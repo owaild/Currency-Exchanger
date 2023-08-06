@@ -9,3 +9,13 @@ export interface RequestDto<T> {
   requestData: T;
 }
 
+export interface rate {
+  code: string;
+  exchanger: bigint | number;
+}
+
+export interface currencySymbol {
+  code: string;
+  text: string;
+}
+
